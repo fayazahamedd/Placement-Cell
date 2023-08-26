@@ -1,0 +1,78 @@
+<style>
+/* Your provided CSS styling */
+body {
+  font-family: Arial, sans-serif;
+}
+
+form {
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+</style>
+
+</style>
+
+<form action="/student/processinterview" method="post" > 
+    <!-- Student Dropdown -->
+    <label for="studentDropdown">Select Student:</label>
+    <select id="studentDropdown" name="selectedStudent">
+      <option value="">-- Select Student --</option>
+      <% for (const student of response_student) { %>
+      <option value="<%= student._id %>">
+        <%= student.name %>
+      </option>
+      <% } %>
+    </select>
+
+    <!-- Interview Dropdown -->
+    <label for="interviewDropdown">Select Interview:</label>
+    <select id="interviewDropdown" name="selectedInterview">
+      <option value="">-- Select Interview --</option>
+      <% for (const interview of response_interview) { %>
+      <option value="<%= interview._id %>">
+        <%= interview.company %>
+      </option>
+      <% } %>
+    </select>
+
+    <!-- Placement Status Dropdown -->
+    <label for="placementDropdown">Placement Status:</label>
+    <select id="placementDropdown" name="placementStatus">
+      <option value="">-- Select Placement Status --</option>
+      <option value="placed">Placed</option>
+      <option value="not placed">Not Placed</option>
+    </select>
+
+    <input type="submit" value="Submit">
+  </form>

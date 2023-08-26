@@ -1,0 +1,23 @@
+{
+  "name": "placement-cell",
+  "version": "1.0.0",
+  "description": "placement cell for students",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "fayazaamedd",
+  "license": "ISC",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "csv-writer": "^1.6.0",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.3",
+    "flash": "^1.1.0",
+    "mongoose": "^7.4.4",
+    "noty": "^3.2.0-beta-deprecated",
+    "toastr": "^2.1.4"
+  }
+}

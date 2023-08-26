@@ -1,0 +1,63 @@
+<title>Add Interview</title>
+<style>
+    /* Add your CSS styling here */
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    form {
+        margin-top: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+</style>
+<div class="header">
+    <h1 style="align-items: center">Add Interview</h1>
+</div>
+
+<form action="/student/addinterview" method="POST">
+    <label for="dropdown">Select a Student:</label>
+    <select id="dropdown" name="studentId" required>
+        <option value="">Select an option</option>
+        <% for(detail of students) { %>
+            <option value="<%= detail._id %>">
+                <%= detail.name %>
+            </option>
+            <% } %>
+    </select>
+    <label for="company">Company Name:</label>
+    <input type="text" id="company" name="company" placeholder="Enter Company Name" required>
+    <label for="date">Interview Date:</label>
+    <input type="date" id="date" name="date">
+    <input type="submit" value="Submit">
+</form>

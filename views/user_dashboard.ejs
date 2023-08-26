@@ -1,0 +1,198 @@
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    align-items: center;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 15px;
+    width: 300px;
+  }
+
+  .card h3 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+
+  .card p {
+    margin: 10px 0;
+  }
+
+  .placement-status {
+    font-weight: bold;
+    color: #e74c3c;
+  }
+
+  .placed {
+    color: #2ecc71;
+  }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 15px;
+    width: 300px;
+  }
+
+  .card h3 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+
+  .card p {
+    margin: 10px 0;
+  }
+
+  .placement-status {
+    font-weight: bold;
+    color: #e74c3c;
+  }
+
+  .placed {
+    color: #2ecc71;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+</style>
+<div class="header">
+  <h1 style="align-items: center">Profile</h1>
+</div>
+<div class="buttons">
+  <button class="btn btn-primary" type="button" onclick="navigateToSignup()">Add Student</button>
+  <button class="btn btn-primary" type="button" onclick="navigateToSignIn()">Add Interview</button>
+  <button class="btn btn-primary" type="button" onclick="navigateToInterview()">Placement</button>
+  <button class="btn btn-primary" type="button" onclick="downloadCSV()">Download Report</button>
+</div>
+<div class="card-container">
+  <% for (const detail of response) { %>
+    <div class="card">
+      <h3>
+        <%= detail.name %>
+      </h3>
+      <p>Batch: <%= detail.batch %>
+      </p>
+      <p>College: <%= detail.college %>
+      </p>
+      <p>DSA Score: <%= detail.dsa %>
+      </p>
+      <p>Web Score: <%= detail.web %>
+      </p>
+      <p>React Score: <%= detail.react %>
+      </p>
+      <p class="<%= detail.placementStatus === 'placed' ? 'placed' : 'placement-status' %>">
+        Placement Status: <%= detail.placementStatus %>
+      </p>
+    </div>
+    <% } %>
+</div>
+<script>
+
+  function navigateToSignup() {
+    window.location.href = "/student/add";
+  }
+
+  function navigateToSignIn() {
+    window.location.href = "/student/interview";
+  }
+  function navigateToInterview() {
+    window.location.href = "/student/placement";
+  }
+  function downloadCSV(){
+    window.location.href = '/download-csv';    
+  }
+
+  const cardContainer = document.querySelector('.card-container');
+
+  response.forEach(student => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+
+    const name = document.createElement('h3');
+    name.textContent = student.name;
+
+    const batch = document.createElement('p');
+    batch.textContent = `Batch: ${student.batch}`;
+
+    const college = document.createElement('p');
+    college.textContent = `College: ${student.college}`;
+
+    const dsaScore = document.createElement('p');
+    dsaScore.textContent = `DSA Score: ${student.dsa}`;
+
+    const webScore = document.createElement('p');
+    webScore.textContent = `Web Score: ${student.web}`;
+
+    const reactScore = document.createElement('p');
+    reactScore.textContent = `React Score: ${student.react}`;
+
+    const placementStatus = document.createElement('p');
+    placementStatus.classList.add('placement-status');
+    placementStatus.textContent = `Placement Status: ${student.placementStatus}`;
+    if (student.placementStatus === 'placed') {
+      placementStatus.classList.add('placed');
+    }
+
+    card.appendChild(name);
+    card.appendChild(batch);
+    card.appendChild(college);
+    card.appendChild(dsaScore);
+    card.appendChild(webScore);
+    card.appendChild(reactScore);
+    card.appendChild(placementStatus);
+
+    cardContainer.appendChild(card);
+  });
+
+</script>
